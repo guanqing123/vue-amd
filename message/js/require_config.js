@@ -3,7 +3,8 @@ define(function () {
         baseUrl: "../source/js",
         paths: {
             "vue": "lib/vue",
-            "zepto": "lib/zepto1.2"
+            "zepto": "lib/zepto1.2",
+            "components": "../../message/components"
         }
     });
     require(["zepto"], function () {
