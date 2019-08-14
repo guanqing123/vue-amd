@@ -3,7 +3,7 @@ require([
     'components/HeaderBar'
 ], function (Vue, headerBar) {
     new Vue({
-        el: '#message_list',
+        el: '#monthPlanDetail',
         components: {
             'header-bar':headerBar
         },

@@ -4,10 +4,12 @@ define(function () {
         paths: {
             "vue": "lib/vue",
             "zepto": "lib/zepto1.2",
-            "components": "../../message/components"
+            "axios": "lib/axios",
+            "mui": "lib/mui",
+            "components": "../../workplan/components"
         }
     });
     require(["zepto"], function () {
-        require(["../../message/js/" + $("title").text()])
+        require(["../../workplan/js/" + $("title").text()])
     })
 })
