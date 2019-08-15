@@ -1,17 +1,46 @@
 require([
     'vue',
-    'components/HeaderBar'
-], function (Vue, headerBar) {
+    'components/TextArea',
+    'components/PrimaryPicker',
+    'service'
+], function (Vue, TextArea, PrimaryPicker, service) {
     new Vue({
         el: '#monthPlanDetail',
         components: {
-            'header-bar':headerBar
+            'text-area': TextArea,
+            'primary-picker': PrimaryPicker
         },
-        template: `<div>
-            <!--以下为公共头部-->
-            <header-bar title="消息列表">
-                <p class="header_more_text">筛选</p>
-            </header-bar>
-          </div>`
+        template: `
+            <div>
+               <text-area v-for="field in fields" :field="field" :key="field.field"></text-area>
+               <primary-picker id="zgldfield" title="直管领导" :record="zgld.record" :datasource="zgld.datasource" @itemclick="setZgld"></primary-picker>
+            </div>
+        `,
+        data:{
+            fields: [],
+            zgld:{
+                record:{},
+                datasource:[]
+            }
+        },
+        methods: {
+          initData(){
+              let self = this;
+              service.test();
+              service.monthPlanDetailInit('99', function (res) {
+                  self.fields = res.data.fields;
+                  self.zgld.datasource = res.data.zgld;
+              });
+          },
+          setZgld(item){
+              this.zgld.record = item[0]
+          }
+        },
+        created(){
+
+        },
+        mounted(){
+            this.initData();
+        }
     })
 })
